@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Capital Gains Tax Calculator 2024 for US, UK & Canada</title>
+    <meta name="description" content="Calculate your Capital Gains Tax instantly for US, UK, and Canadian markets. Simple, fast, and free online tool for stocks and property.">
+    
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 700px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        h1 { color: #007bff; text-align: center; margin-bottom: 25px; }
+        p { text-align: center; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .result-box { background-color: #e9ecef; padding: 20px; border-radius: 6px; text-align: center; margin-top: 25px; }
+        .result-box h2 { color: #28a745; margin-top: 0; }
+        .button { 
+            background-color: #28a745; 
+            color: white; 
+            padding: 12px 20px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 16px;
+            width: 100%;
+        }
+        .button:hover { background-color: #218838; }
+        /* Temporary padding for content area */
+        .seo-content { margin-top: 40px; padding: 0 20px; text-align: left; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Capital Gains Tax Calculator</h1>
+        
+        <p>Use this free tool to instantly calculate the tax owed on your profits from selling stocks, property, or other assets.</p>
+
+        <div id="calculator-inputs">
+            
+            <div class="input-group">
+                <label for="country">Country (Tax Jurisdiction):</label>
+                <select id="country">
+                    <option value="US">United States (US)</option>
+                    <option value="UK">United Kingdom (UK)</option>
+                    <option value="CA">Canada (CA)</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label for="purchasePrice">Purchase Price (Initial Cost):</label>
+                <input type="number" id="purchasePrice" placeholder="e.g. 10000" min="0">
+            </div>
+
+            <div class="input-group">
+                <label for="sellingPrice">Selling Price (Sale Value):</label>
+                <input type="number" id="sellingPrice" placeholder="e.g. 15000" min="0">
+            </div>
+
+            <div class="input-group">
+                <label for="holdingPeriod">Holding Period (in Years):</label>
+                <input type="number" id="holdingPeriod" placeholder="e.g. 1.5" min="0" step="0.1">
+            </div>
+            
+            <button class="button" onclick="calculateTax()">Calculate Tax</button>
+        </div>
+        
+        <div class="result-box" id="result-display">
+            <h2>Your Estimated Tax</h2>
+            <p id="total-gain">Total Capital Gain: $0.00</p>
+            <p id="tax-due">Estimated Tax Due: $0.00</p>
+        </div>
+
+        <script>
+            function calculateTax() {
+                // Calculation Logic will be added here in the next step
+                alert("Calculation logic is coming soon! Please check back.");
+                
+                // For now, let's display a temporary value
+                document.getElementById('total-gain').innerText = "Total Capital Gain: Waiting for calculation logic.";
+                document.getElementById('tax-due').innerText = "Estimated Tax Due: Waiting for calculation logic.";
+            }
+        </script>
+
+        <div class="seo-content">
+            <hr style="border-color: #eee;">
+            <h2>What is Capital Gains Tax? (For SEO)</h2>
+            <p>Capital Gains Tax (CGT) is a tax on the profit when you sell (or 'dispose of') an asset that has increased in value. It's often applied to real estate, stocks, bonds, and cryptocurrencies. Using a calculator helps you estimate your liability quickly and accurately.</p>
+            <p>In the US, the rate depends heavily on whether the asset was held for less than one year (short-term) or more than one year (long-term). Short-term gains are taxed at ordinary income tax rates, while long-term gains benefit from preferential, lower rates.</p>
+        </div>
+    </div>
+</body>
+</html>
+
