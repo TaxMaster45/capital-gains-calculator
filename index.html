@@ -72,16 +72,77 @@
             <p id="tax-due">Estimated Tax Due: $0.00</p>
         </div>
 
-        <script>
+                <script>
             function calculateTax() {
-                // Calculation Logic will be added here in the next step
-                alert("Calculation logic is coming soon! Please check back.");
+                // Get input values
+                const country = document.getElementById('country').value;
+                const purchasePrice = parseFloat(document.getElementById('purchasePrice').value);
+                const sellingPrice = parseFloat(document.getElementById('sellingPrice').value);
+                const holdingPeriod = parseFloat(document.getElementById('holdingPeriod').value);
                 
-                // For now, let's display a temporary value
-                document.getElementById('total-gain').innerText = "Total Capital Gain: Waiting for calculation logic.";
-                document.getElementById('tax-due').innerText = "Estimated Tax Due: Waiting for calculation logic.";
+                // Input validation
+                if (isNaN(purchasePrice) || isNaN(sellingPrice) || isNaN(holdingPeriod) || purchasePrice <= 0) {
+                    alert("Please enter valid positive numbers for all fields.");
+                    return;
+                }
+                
+                // Calculate total gain
+                const totalGain = sellingPrice - purchasePrice;
+                
+                if (totalGain <= 0) {
+                    document.getElementById('total-gain').innerText = `Total Capital Gain: $${totalGain.toFixed(2)}`;
+                    document.getElementById('tax-due').innerText = "Estimated Tax Due: $0.00 (No Tax on Loss)";
+                    return;
+                }
+
+                let taxRate = 0;
+                let taxType = '';
+                let taxLiability = 0;
+                
+                // --- Simplified US Capital Gains Logic ---
+                // Using estimated tax brackets for simplicity to handle US Long-Term vs. Short-Term
+                
+                if (country === 'US') {
+                    if (holdingPeriod < 1.0) {
+                        // Short-term gain (Taxed as Ordinary Income - Estimated average 30%)
+                        taxRate = 0.30;
+                        taxType = 'Short-Term Gain (30% est.)';
+                    } else {
+                        // Long-term gain (Taxed at preferential rates - Estimated average 15%)
+                        taxRate = 0.15;
+                        taxType = 'Long-Term Gain (15% est.)';
+                    }
+                    taxLiability = totalGain * taxRate;
+                } 
+                // --- Simple Logic for UK/CA (Future Expansion) ---
+                else if (country === 'UK') {
+                    // Placeholder: UK uses Annual Exempt Amount (free allowance). Assuming this is already deducted.
+                    // Using an average higher rate (20%) for simplicity.
+                    taxRate = 0.20; 
+                    taxType = 'UK Gain (20% est.)';
+                    // NOTE: UK has a small annual tax-free allowance, which we are ignoring for simplicity here.
+                    taxLiability = totalGain * taxRate;
+
+                }
+                else if (country === 'CA') {
+                    // Placeholder: Canada includes 50% of gain in income. Using 50% inclusion * 30% average tax = 15%.
+                    taxRate = 0.15; 
+                    taxType = 'CA Gain (15% est.)';
+                    taxLiability = totalGain * taxRate;
+                }
+                
+                // Format the results to US Dollar currency format (for Tier 1 countries)
+                const formatter = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                });
+
+                // Update results display
+                document.getElementById('total-gain').innerText = `Total Capital Gain: ${formatter.format(totalGain)} (${taxType})`;
+                document.getElementById('tax-due').innerText = `Estimated Tax Due: ${formatter.format(taxLiability)}`;
             }
-        </script>
+                </script>
+        
 
         <div class="seo-content">
             <hr style="border-color: #eee;">
